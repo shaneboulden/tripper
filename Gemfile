@@ -1,5 +1,5 @@
-source :rubygems
+source 'https://rubygems.org'
 gem 'sinatra'
 gem 'twitter'
 gem 'chartkick'
-gem 'sinatra/flash'
+gem 'sinatra-flash' :require => 'sinatra/flash'
