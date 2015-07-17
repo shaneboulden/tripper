@@ -1,0 +1,24 @@
+<script>
+$(document).ready(function() {
+    $('#content').keyup(function(event) {
+     if (event.keyCode == 13) {
+      $('#submit').trigger('click')
+      return true;
+     }
+   });
+});
+</script>
+<section id="add">
+  <form action="/profile" method="post">
+    <textarea name="content" id="content"  placeholder="Search by Twitter handle (eg; stephenathome)&hellip;"></textarea>
+    <input type="submit" id="submit" value="Search!">
+</form>
+</section>
+<!--section id="add">
+    <p>Geo search</p>
+    <form action="/map" method="post">
+        <textarea style="display:inline;" name="geo_lat" placeholder="Enter latitude&hellip;"></textarea>
+        <textarea style="display:inline;" name="geo_long" placeholder"Enter longitude&hellip;"></textarea>
+        <input type="submit" value="Search!">
+    </form>
+</section-->

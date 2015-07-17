@@ -1,0 +1,29 @@
+<h1>User name: <%= @user.name %></h1>
+<p>Twitter ID: <%= @user.id %></p>
+<p>Screen name: <%= @user.screen_name %></p>
+<p>Description: <%= @user.description %></p>
+<p>Created: <%= @user.created_at %></p>
+<p>Location: <%= @user.location %></p>
+<p>Language: <%= @user.lang %></p>
+<p>Website: <a href="<%=@user.website %>"><%= @user.website %></a></p>
+<p>Profile Banner URI: <a href="<%= @user.profile_banner_uri_https.to_s.sub! 'web', '1500x500' %>"><%= @user.profile_banner_uri_https.to_s.sub! 'web','1500x500' %></a></p>
+<p>Profile Image URI: <a href="<%= @user.profile_image_uri_https.to_s.sub! 'normal','bigger' %>"><%= @user.profile_image_uri_https.to_s.sub! 'normal','bigger' %></a></p>
+<p># Favourites: <%= @user.favorites_count %></p>
+<p># Followers: <%= @user.followers_count %></p> 
+<p># Friends: <%= @user.friends_count %></p>
+<p># Tweets: <%= @user.statuses_count %></p>
+<p>Time zone: <%= @user.time_zone %></p>
+<p>Geocoded: <%= @user.geo_enabled? %></p>
+<p>Average retweets: <%= @num_tweets==0 ? "Zero tweets" : @retweet_total/@num_tweets %></p>
+<br>
+<h1><span class="blue">Tweet</span> sources (last 200 tweets)</h1>
+<%= pie_chart(@tweetsource) %>
+<br>
+<h1><span class="blue">Tweet</span> days (last 200 tweets)</h1>
+<%= bar_chart(@tweetday) %>
+<br>
+<h1><span class="blue">Tweet </span>timeline (last 200 tweets)</h1>
+<%= line_chart(@tweetline) %>
+<br>
+<!--h1>Stacked chart of sources and dates</h1-->
+<!--h1>Scatter chart of profile activity</h1-->

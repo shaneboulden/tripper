@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="ut8">
+  <title<%= @title + ' | Tripper' %></title>
+  <link href="/reset.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+  <script src="//www.google.com/jsapi"></script>
+  <script src="chartkick.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+  <header>
+    <hgroup>
+    <h1><a href="/"><span class="blue">t</span><span class="dark-gray">ripper</span></a></h1>
+    <h2><span class="blue">twitter</span> <span class="dark-gray">ripper</span></h2>
+    </hgroup>
+  </header>
+
+  <div id="main">
+    <% if flash[:error] %>
+        <span class="flash error"><%= flash[:error]%></span>
+    <% end %>
+    <%= yield %>
+  </div>
+
+  <footer>
+    <p><small>A micro-app demonstrating the <a href="https://github.com/sferik/twitter">Ruby Twitter API</a></small></p>
+  </footer>
+</body>
+</html>
