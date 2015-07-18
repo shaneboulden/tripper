@@ -21,12 +21,17 @@ post '/profile' do
     end
       
       @title='Search'
+      
+      # Log the search (also appears in papertrail)
+      puts 'Tripper::Search/'+params[:content]
 
       begin
         #create the user and show the profile pag
-        @user = @client.user(params[:content]) 
-        puts 'Tripper::Search/'+params[:content]
-     
+        @user = @client.user(params[:content])     
+        
+        # if the search is successful, print a message
+        puts 'Tripper::User exists'
+
         # create the objects for the chartkick charts
      
         @tweetsource ||= Hash.new(0)
@@ -67,9 +72,11 @@ post '/profile' do
       erb :profile
     
       rescue Twitter::Error::NotFound => e
+          puts 'Tripper::NotFound/'+e.message
           flash[:error] = e.message
           redirect '/'
       rescue Twitter::Error::Forbidden => e
+          puts 'Tripper::Forbidden/'+e.message
           flash[:error] = e.message
           redirect '/'
       end
