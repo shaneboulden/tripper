@@ -25,6 +25,7 @@ post '/profile' do
       begin
         #create the user and show the profile pag
         @user = @client.user(params[:content]) 
+        puts 'Tripper::Search/'+params[:content]
      
         # create the objects for the chartkick charts
      
