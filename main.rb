@@ -16,13 +16,13 @@ end
 
 post '/profile' do			
 		
-		@client = Twitter::REST::Client.new do |config|
+			@client = Twitter::REST::Client.new do |config|
 		
-			# Use Heroku environment variables to authenticate to the Twitter API
-			config.consumer_key = ENV['key']
-			config.consumer_secret = ENV['secret']
+				# Use Heroku environment variables to authenticate to the Twitter API
+				config.consumer_key = ENV['key']
+				config.consumer_secret = ENV['secret']
 				
-    end
+			end
 
       @title='Search'
       
@@ -36,9 +36,8 @@ post '/profile' do
         # if the search is successful, print a message
         puts 'Tripper::User exists'
 
-        # create the objects for the chartkick charts
-     
-        @tweetsource ||= Hash.new(0)
+        # create instance variables for the chartkick charts
+				@tweetsource ||= Hash.new(0)
         @retweet_total = 0
         @num_tweets = 0
         @tweetday ||= {"Sunday" => 0, "Monday" => 0, "Tuesday" => 0,
@@ -49,7 +48,7 @@ post '/profile' do
         @tweetline = Hash.new(0)
 
         #note that the user_timeline method returns the 20 most recent Tweets 
-        #posted by the specified user - rate limiting?
+        #posted by the specified user
         timeline = @client.user_timeline(@user.screen_name, :count => 200)
         timeline.each do |t|
           @num_tweets += 1
@@ -63,14 +62,7 @@ post '/profile' do
           @tweetsource[src[0][1..-2]] += 1
 
           @tweetline[date] += 1
-
-          #push the date and src onto a hash
-          #@sourcedays[src[0][1..-2]] += [date,1]
-          #puts "date: #{date}, src: #{src[0][1..-2]}"
-          # note data needs to be of the form [
-          #   {name: "series A", data: series_a},
-          #   {name: "series B", data: series_b}
-          # ]
+          
         end
 
       erb :profile
