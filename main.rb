@@ -9,24 +9,28 @@ enable :sessions
 
 get '/' do
   @title = 'Search'
-  erb :home
+  		
+	erb :home
+
 end
 
-post '/profile' do
-      @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = '***REMOVED***'
-      config.consumer_secret = '***REMOVED***'
-      config.access_token = '***REMOVED***'
-      config.access_token_secret = '***REMOVED***'
+post '/profile' do			
+		
+		@client = Twitter::REST::Client.new do |config|
+		
+			# Use Heroku environment variables to authenticate to the Twitter API
+			config.consumer_key = ENV['key']
+			config.consumer_secret = ENV['secret']
+				
     end
-      
+
       @title='Search'
       
       # Log the search (also appears in papertrail)
       puts 'Tripper::Search/'+params[:content]
 
       begin
-        #create the user and show the profile pag
+        #create the user and show the profile page
         @user = @client.user(params[:content])     
         
         # if the search is successful, print a message
