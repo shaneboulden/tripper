@@ -84,22 +84,4 @@ post '/profile' do
           flash[:error] = e.message
           redirect '/'
       end
-end
-
-post "/map" do
-    @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = '***REMOVED***'
-      config.consumer_secret = '***REMOVED***'
-      config.access_token = '***REMOVED***'
-      config.access_token_secret = '***REMOVED***'
-    end
- 
-   @title = "geomap"
-   @geo_lat = params[:geo_lat]
-   @geo_long = params[:geo_long]
-
-   #Array @geotweets = @client.search(" -rt",:geocode => "{#@geo_lat},{#@geo_long}, 5km").take(3).collect
-
-   Array @geotweets = @client.search("Phil Walsh -rt", :result_type => "recent").take(3).collect
-   erb :map
 end    
