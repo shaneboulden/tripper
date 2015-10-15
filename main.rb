@@ -6,7 +6,7 @@ require 'sinatra/flash'
 enable :sessions
 
 get '/' do
-  @title = 'Search'	
+  @title = 'Search'
   erb :home
 end
 
@@ -20,8 +20,9 @@ post '/profile' do
 
   @title='Search'
   
-  # Log the search (also appears in papertrail)
+  # Log the search (also appears in papertrail) and user-agent
   puts 'Tripper::Search/'+params[:content]
+  puts 'User-agent::'+request.user_agent
 
   begin
     #create the user and show the profile page
