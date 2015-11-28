@@ -1,142 +1,142 @@
 body {
-   margin: 35px auto;
-   width: 640px;
+  margin: 35px auto;
+  width: 640px;
 }
         
 header {
-   text-align: center;
-   margin: 0 0 20px;
+  text-align: center;
+  margin: 0 0 20px;
  }
                  
  header h1 {
-   display: inline;
-   font-size: 32px;
+  display: inline;
+  font-size: 32px;
  }
                         
  header h1 a:link, header h1 a:visited {
-   /*color: #444;*/
-   text-decoration: none;
+  /*color: #444;*/
+  text-decoration: none;
  }
                                 
  header h2 {
-   font-size: 16px;
-   /*font-style: italic;*/
-   /*color: #999;*/
+  font-size: 16px;
+  /*font-style: italic;*/
+  /*color: #999;*/
  }
 
   
- .flash.error {
-      color: #610B0B;
-      background: #F6CECE;
-  }
+.flash.error {
+  color: #610B0B;
+  background: #F6CECE;
+}
 
-  .flash.notice, .flash.info {
-      border: thin solid #ff0;
-      background: #ffe;
-  }
+.flash.notice, .flash.info {
+  border: thin solid #ff0;
+  background: #ffe;
+}
 
-  .flash.warning {
-    border: thin solid #b8860b;
-    background: #ff0;
+.flash.warning {
+  border: thin solid #b8860b;
+  background: #ff0;
 }
 
 .blue {
-     color: #55acee;
+  color: #55acee;
 }
 
 .light-gray {
-     color: #66757f
+  color: #66757f
 }
 
 .dark-gray {
-    color: #292f33
+  color: #292f33
 }
 
- #main {
-   margin: 0 0 20px;
+#main {
+  margin: 0 0 20px;
 }
                                                 
- #add {
-   margin: 0 0 20px;
- }
+#add {
+  margin: 0 0 20px;
+}
                                                      
- #add textarea {
-    height: 30px;
-    width: 510px;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
+#add textarea {
+  height: 30px;
+  width: 510px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
                                                                     
- #add input {
-    height: 50px;
-  width: 100px;
- margin: -50px 0 0;
-    border: 1px solid #ddd;
-    background: white;
-  }
-                                                                                       
- #edit textarea {
-   height: 30px;
-   width: 480px;
-   padding: 10px;
-   border: 1px solid #ddd;
- }
-                                                                                                         
- #edit input[type=submit] {
+#add input {
   height: 50px;
-   width: 100px;
-   margin: -50px 0 0;
-   border: 1px solid #ddd;
+  width: 100px;
+  margin: -50px 0 0;
+  border: 1px solid #ddd;
   background: white;
- }
+}
+                                                                                       
+#edit textarea {
+  height: 30px;
+  width: 480px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+                                                                                                         
+#edit input[type=submit] {
+  height: 50px;
+  width: 100px;
+  margin: -50px 0 0;
+  border: 1px solid #ddd;
+  background: white;
+}
                                                                                                                             
- #edit input[type=checkbox] {
-   height: 50px;
-   width: 20px;
- }
+#edit input[type=checkbox] {
+  height: 50px;
+  width: 20px;
+}
                                                                                                                                     
- article {
- border: 1px solid #eee;
- border-top: none;
- padding: 15px 10px;
- }
+article {
+  border: 1px solid #eee;
+  border-top: none;
+  padding: 15px 10px;
+}
                                                                                                                                                  
 article:first-of-type {
- border: 1px solid #eee;
- }
+  border: 1px solid #eee;
+}
                                                                                                                                              
 article:nth-child(even) {
- background: #fafafa;
- }
+  background: #fafafa;
+}
                                                                                                                                                          
 article.complete {
- background: #fedae3;
- }
+  background: #fedae3;
+}
                                                                                                                                                              
  
 article span {
- font-size: 0.8em;
- }
+  font-size: 0.8em;
+}
                                                                                                                                                                  
  
- p {
- margin: 0 0 5px;
- }
+p {
+  margin: 0 0 5px;
+}
                                                                                                                                                                    
- .meta {
- font-size: 0.8em;
- font-style: italic;
- color: #888;
- }
+.meta {
+  font-size: 0.8em;
+  font-style: italic;
+  color: #888;
+}
                                                                                                                                                                                  
- .links {
- font-size: 1.8em;
- line-height: 0.8em;
- float: right;
- margin: -10px 0 0;
- }
+.links {
+  font-size: 1.8em;
+  line-height: 0.8em;
+  float: right;
+  margin: -10px 0 0;
+}
                                                                                                                                                                                                  
- .links a {
- display: block;
- text-decoration: none;
- }
+.links a {
+  display: block;
+  text-decoration: none;
+}
