@@ -39,13 +39,13 @@ post '/profile' do
                 "Wednesday" => 0, "Thursday" => 0, "Friday" => 0,
                 "Saturday" => 0}
     @followtz ||= Hash.new(0)
-    @sourcedays = Hash.new(0)
+    sourcedays = Hash.new {|h,k| h[k] = []}
     @tweetline = Hash.new(0)
 
     #note that the user_timeline method returns the 20 most recent Tweets 
     #posted by the specified user
-    timeline = @client.user_timeline(@user.screen_name, :count => 200)
-    timeline.each do |t|
+    @timeline = @client.user_timeline(@user.screen_name, :count => 200)
+    @timeline.each do |t|
       @num_tweets += 1
       @retweet_total += t.retweet_count
       date = Date.parse(t.created_at.to_s[0..9])
@@ -53,13 +53,21 @@ post '/profile' do
   
       # use a regular expression to get the text enclosed by 
       # >< in the twitter source, then remove the first and last chars
-      src = />(.*)</.match(t.source)
-      @tweetsource[src[0][1..-2]] += 1
-
+      src = />(.*)</.match(t.source)[0][1..-2]
+      @tweetsource[src] += 1
+      sourcedays[src] << date.strftime('%Y-%m-%d')
       @tweetline[date] += 1
       
     end
-
+    
+  #format the sourcedays data
+  @sourceplots = Hash.new {|h,k| h[k] = Hash.new(0)}
+  sourcedays.each do |source, data|
+    data.each do |date|
+      @sourceplots[source][date] += 1
+    end
+  end
+  
   erb :profile
 
   rescue Twitter::Error::NotFound => e
