@@ -99,12 +99,12 @@ body {
 }
 
 footer {
-  width: 960px;
+  width: 800px;
   margin: 0 auto 20px auto;
 }
         
 header {
-  width: 960px;
+  width: 800px;
   text-align: center;
   margin: 35px auto 20px auto;
  }
@@ -160,7 +160,7 @@ header {
 }
 
 #main {
-  width: 960px;
+  width: 800px;
   margin: 0 auto 20px auto;
 }
 
@@ -171,7 +171,7 @@ header {
                                                      
 #add input[type=text] {
   height: 30px;
-  width: 740px;
+  width: 640px;
   padding: 10px;
   border: 1px solid #ddd;
 }
