@@ -20,9 +20,9 @@ post '/profile' do
 
   @title='Search'
   
-  # Log the search (also appears in papertrail) and user-agent
+  # Log the search and user-agent (also appears in papertrail) 
   puts 'Tripper::Search/'+params[:content]
-  puts 'User-agent::'+request.user_agent
+  puts 'Tripper::User-agent/'+request.user_agent
 
   begin
     #create the user and show the profile page
@@ -77,6 +77,10 @@ post '/profile' do
   rescue Twitter::Error::Forbidden => e
     puts 'Tripper::Forbidden/'+e.message
     flash[:error] = e.message
+    redirect '/'
+  rescue Twitter::Error::Unauthorized => e
+    puts 'Tripper::Unauthorized/'+e.message
+    flash[:error] = 'Account protected (not authorized).'
     redirect '/'
   end
 end    
