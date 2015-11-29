@@ -17,8 +17,6 @@ post '/profile' do
     config.consumer_key = ENV['key']
     config.consumer_secret = ENV['secret']		
   end
-
-  @title='Search'
   
   # Log the search and user-agent (also appears in papertrail) 
   puts 'Tripper::Search/'+params[:content]
@@ -68,6 +66,11 @@ post '/profile' do
     end
   end
   
+  # Note that the below code exceeds the API rate limits, even for small 
+  # numbers of followers
+  #@followers_tz = Hash.new(0)
+  #@client.followers(params[:content]).each {|foll| @followers_tz[foll.time_zone] += 1 }
+  
   erb :profile
 
   rescue Twitter::Error::NotFound => e
@@ -83,4 +86,4 @@ post '/profile' do
     flash[:error] = 'Account protected (not authorized).'
     redirect '/'
   end
-end    
+end
