@@ -24,6 +24,7 @@
 <br>
 <h1><span class="blue">Tweet </span>timeline (last 200 tweets)</h1>
 <%= line_chart(@tweetline) %>
+<br>
 <h1><span class="blue">Tweet </span>sources timeline (last 200 tweets)</h1>
 <%= line_chart @sourceplots.map {|s,d| {name: s, data: d}}  %>
 <br>
