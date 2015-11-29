@@ -1,13 +1,3 @@
-<script>
-$(document).ready(function() {
-    $('#content').keyup(function(event) {
-     if (event.keyCode == 13) {
-      $('#submit').trigger('click')
-      return true;
-     }
-   });
-});
-</script>
 <section id="add">
   <form action="/profile" method="post">
     <input type="text" name="content" id="content"  placeholder="Search by Twitter handle (eg; stephenathome)&hellip;"></textarea>
