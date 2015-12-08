@@ -10,22 +10,22 @@ get '/' do
   erb :home
 end
 
-post '/profile' do			
-		
+post '/profile' do
+
   @client = Twitter::REST::Client.new do |config|
     # Use Heroku environment variables to authenticate to the Twitter API
     config.consumer_key = ENV['key']
-    config.consumer_secret = ENV['secret']		
+    config.consumer_secret = ENV['secret']
   end
-  
-  # Log the search and user-agent (also appears in papertrail) 
+
+  # Log the search and user-agent (also appears in papertrail)
   puts 'Tripper::Search/'+params[:content]
   puts 'Tripper::User-agent/'+request.user_agent
 
   begin
     #create the user and show the profile page
-    @user = @client.user(params[:content])     
-    
+    @user = @client.user(params[:content])
+
     # if the search is successful, print a message
     puts 'Tripper::User exists'
 
@@ -40,7 +40,7 @@ post '/profile' do
     sourcedays = Hash.new {|h,k| h[k] = []}
     @tweetline = Hash.new(0)
 
-    #note that the user_timeline method returns the 20 most recent Tweets 
+    #note that the user_timeline method returns the 20 most recent Tweets
     #posted by the specified user
     @timeline = @client.user_timeline(@user.screen_name, :count => 200)
     @timeline.each do |t|
@@ -48,16 +48,15 @@ post '/profile' do
       @retweet_total += t.retweet_count
       date = Date.parse(t.created_at.to_s[0..9])
       @tweetday[date.strftime('%A')] += 1
-  
-      # use a regular expression to get the text enclosed by 
+
+      # use a regular expression to get the text enclosed by
       # >< in the twitter source, then remove the first and last chars
       src = />(.*)</.match(t.source)[0][1..-2]
       @tweetsource[src] += 1
       sourcedays[src] << date.strftime('%Y-%m-%d')
       @tweetline[date] += 1
-      
     end
-    
+
   #format the sourcedays data
   @sourceplots = Hash.new {|h,k| h[k] = Hash.new(0)}
   sourcedays.each do |source, data|
@@ -65,12 +64,12 @@ post '/profile' do
       @sourceplots[source][date] += 1
     end
   end
-  
-  # Note that the below code exceeds the API rate limits, even for small 
+
+  # Note that the below code exceeds the API rate limits, even for small
   # numbers of followers
   #@followers_tz = Hash.new(0)
   #@client.followers(params[:content]).each {|foll| @followers_tz[foll.time_zone] += 1 }
-  
+
   erb :profile
 
   rescue Twitter::Error::NotFound => e
