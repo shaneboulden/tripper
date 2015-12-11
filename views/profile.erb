@@ -9,7 +9,7 @@
 <p>Profile Banner URI: <a href="<%= @user.profile_banner_uri_https.to_s.sub! 'web', '1500x500' %>"><%= @user.profile_banner_uri_https.to_s.sub! 'web','1500x500' %></a></p>
 <p>Profile Image URI: <a href="<%= @user.profile_image_uri_https.to_s.sub! 'normal','bigger' %>"><%= @user.profile_image_uri_https.to_s.sub! 'normal','bigger' %></a></p>
 <p># Favourites: <%= @user.favorites_count %></p>
-<p># Followers: <%= @user.followers_count %></p> 
+<p># Followers: <%= @user.followers_count %></p>
 <p># Friends: <%= @user.friends_count %></p>
 <p># Tweets: <%= @user.statuses_count %></p>
 <p>Time zone: <%= @user.time_zone %></p>
