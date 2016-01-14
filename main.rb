@@ -18,10 +18,6 @@ post '/profile' do
     config.consumer_secret = ENV['secret']
   end
 
-  # Log the search and user-agent (also appears in papertrail)
-  puts 'Tripper::Search/'+params[:content]
-  puts 'Tripper::User-agent/'+request.user_agent
-
   begin
     #create the user and show the profile page
     @user = @client.user(params[:content])
@@ -57,32 +53,31 @@ post '/profile' do
       @tweetline[date] += 1
     end
 
-  #format the sourcedays data
-  @sourceplots = Hash.new {|h,k| h[k] = Hash.new(0)}
-  sourcedays.each do |source, data|
-    data.each do |date|
-      @sourceplots[source][date] += 1
+    #format the sourcedays data
+    @sourceplots = Hash.new {|h,k| h[k] = Hash.new(0)}
+    sourcedays.each do |source, data|
+      data.each do |date|
+        @sourceplots[source][date] += 1
+      end
     end
-  end
 
-  # Note that the below code exceeds the API rate limits, even for small
-  # numbers of followers
-  #@followers_tz = Hash.new(0)
-  #@client.followers(params[:content]).each {|foll| @followers_tz[foll.time_zone] += 1 }
+    # Log the search and user-agent (also appears in papertrail)
+    puts 'Tripper::Search/'+params[:content]
+    puts 'Tripper::User-agent/'+request.user_agent
 
-  erb :profile
+    erb :profile
 
-  rescue Twitter::Error::NotFound => e
-    puts 'Tripper::NotFound/'+e.message
-    flash[:error] = e.message
-    redirect '/'
-  rescue Twitter::Error::Forbidden => e
-    puts 'Tripper::Forbidden/'+e.message
-    flash[:error] = e.message
-    redirect '/'
-  rescue Twitter::Error::Unauthorized => e
-    puts 'Tripper::Unauthorized/'+e.message
-    flash[:error] = 'Account protected (not authorized).'
-    redirect '/'
+    rescue Twitter::Error::NotFound => e
+        puts 'Tripper::NotFound/'+e.message
+        flash[:error] = e.message
+      redirect '/'
+    rescue Twitter::Error::Forbidden => e
+      puts 'Tripper::Forbidden/'+e.message
+      flash[:error] = e.message
+      redirect '/'
+    rescue Twitter::Error::Unauthorized => e
+      puts 'Tripper::Unauthorized/'+e.message
+      flash[:error] = 'Account protected (not authorized).'
+      redirect '/'
   end
 end
