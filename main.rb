@@ -18,6 +18,9 @@ post '/profile' do
     config.consumer_secret = ENV['secret']
   end
 
+  puts 'Tripper::Search/'+params[:content]
+  puts 'Tripper::User-agent/'+request.user_agent
+
   begin
     #create the user and show the profile page
     @user = @client.user(params[:content])
@@ -60,10 +63,6 @@ post '/profile' do
         @sourceplots[source][date] += 1
       end
     end
-
-    # Log the search and user-agent (also appears in papertrail)
-    puts 'Tripper::Search/'+params[:content]
-    puts 'Tripper::User-agent/'+request.user_agent
 
     erb :profile
 
