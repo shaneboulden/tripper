@@ -31,6 +31,7 @@ post '/profile' do
     # create instance variables for the chartkick charts
     @tweetsource ||= Hash.new(0)
     @retweet_total = 0
+    @favourite_total = 0
     @num_tweets = 0
     @tweetday ||= {"Sunday" => 0, "Monday" => 0, "Tuesday" => 0,
                 "Wednesday" => 0, "Thursday" => 0, "Friday" => 0,
@@ -39,12 +40,13 @@ post '/profile' do
     sourcedays = Hash.new {|h,k| h[k] = []}
     @tweetline = Hash.new(0)
 
-    #note that the user_timeline method returns the 20 most recent Tweets
-    #posted by the specified user
+    #note that, by detault the user_timeline method returns the 20 most recent T
+    #weets posted by the specified user
     @timeline = @client.user_timeline(@user.screen_name, :count => 200)
     @timeline.each do |t|
       @num_tweets += 1
       @retweet_total += t.retweet_count
+      @favourite_total += t.favorite_count
       date = Date.parse(t.created_at.to_s[0..9])
       @tweetday[date.strftime('%A')] += 1
 

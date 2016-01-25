@@ -15,6 +15,7 @@
 <p>Time zone: <%= @user.time_zone %></p>
 <p>Geocoded: <%= @user.geo_enabled? %></p>
 <p>Average retweets: <%= @num_tweets==0 ? "Zero tweets" : @retweet_total/@num_tweets %></p>
+<p>Average favourites: <%= @num_tweets==0? "Zero tweets" : @favourite_total/@num_tweets %></p>
 <br>
 <h1><span class="blue">Tweet</span> sources (last 200 tweets)</h1>
 <%= pie_chart(@tweetsource) %>
