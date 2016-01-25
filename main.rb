@@ -69,8 +69,8 @@ post '/profile' do
     erb :profile
 
     rescue Twitter::Error::NotFound => e
-        puts 'Tripper::NotFound/'+e.message
-        flash[:error] = e.message
+      puts 'Tripper::NotFound/'+e.message
+      flash[:error] = e.message
       redirect '/'
     rescue Twitter::Error::Forbidden => e
       puts 'Tripper::Forbidden/'+e.message
