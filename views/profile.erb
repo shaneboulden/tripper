@@ -18,13 +18,13 @@
 <p>Average favourites: <%= @num_tweets==0? "Zero tweets" : @favourite_total/@num_tweets %></p>
 <br>
 <h1><span class="blue">Tweet</span> sources (last 200 tweets)</h1>
-<%= pie_chart(@tweetsource) %>
+<%= pie_chart @tweetsource %>
 <br>
 <h1><span class="blue">Tweet</span> days (last 200 tweets)</h1>
-<%= bar_chart(@tweetday) %>
+<%= bar_chart @tweetday %>
 <br>
 <h1><span class="blue">Tweet </span>timeline (last 200 tweets)</h1>
-<%= line_chart(@tweetline) %>
+<%= line_chart @tweetline %>
 <br>
 <h1><span class="blue">Tweet </span>sources timeline (last 200 tweets)</h1>
 <%= line_chart @sourceplots.map {|s,d| {name: s, data: d}}  %>
