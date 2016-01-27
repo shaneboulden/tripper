@@ -31,7 +31,7 @@ post '/profile' do
     # create instance variables for the chartkick charts
     @tweetsource ||= Hash.new(0)
     @retweet_total = 0
-    @favourite_total = 0
+    @likes_total = 0
     @num_tweets = 0
     @tweetday ||= {"Sunday" => 0, "Monday" => 0, "Tuesday" => 0,
                 "Wednesday" => 0, "Thursday" => 0, "Friday" => 0,
@@ -45,8 +45,9 @@ post '/profile' do
     @timeline = @client.user_timeline(@user.screen_name, :count => 200)
     @timeline.each do |t|
       @num_tweets += 1
+      # Twitter 'likes' are still called 'favorites' in the API
       @retweet_total += t.retweet_count
-      @favourite_total += t.favorite_count
+      @likes_total += t.favorite_count
       date = Date.parse(t.created_at.to_s[0..9])
       @tweetday[date.strftime('%A')] += 1
 
