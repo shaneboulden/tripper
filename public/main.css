@@ -138,8 +138,7 @@ header {
 }
 
 .flash.warning {
-  border: thin solid #b8860b;
-  background: #ff0;
+  background: #ffedc1;
 }
 
 .blue {
