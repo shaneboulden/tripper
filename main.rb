@@ -19,7 +19,6 @@ post '/profile' do
   end
 
   puts 'Tripper::Search/'+params[:content]
-  puts 'Tripper::User-agent/'+request.user_agent
 
   begin
     #create the user and show the profile page
@@ -40,8 +39,8 @@ post '/profile' do
     sourcedays = Hash.new {|h,k| h[k] = []}
     @tweetline = Hash.new(0)
 
-    #note that, by detault the user_timeline method returns the 20 most recent T
-    #weets posted by the specified user
+    #note that, by detault the user_timeline method returns the 20 most recent 
+    #tweets posted by the specified user
     @timeline = @client.user_timeline(@user.screen_name, :count => 200)
     @timeline.each do |t|
       @num_tweets += 1
