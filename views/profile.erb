@@ -14,9 +14,9 @@
 <p># Tweets: <%= @user.statuses_count %></p>
 <p>Time zone: <%= @user.time_zone %></p>
 <p>Geocoded: <%= @user.geo_enabled? %></p>
-<p><span class="flash warning">Note that the following stats also reflect replies, 
+<!--p><span class="flash warning">Note that the following stats also reflect replies, 
 which do not appear on a user's profile (when viewed from a desktop client). Replies 
-are still shown on the user's mobile profile (ie; https://m.twitter.com/facebook)</span></p>
+are still shown on the user's mobile profile (ie; https://m.twitter.com/facebook)</span></p-->
 <p>Average retweets: <%= @num_tweets==0 ? "Zero tweets" : @retweet_total/@num_tweets %></p>
 <p>Average likes: <%= @num_tweets==0? "Zero tweets" : @likes_total/@num_tweets %></p>
 <br>
