@@ -13,7 +13,7 @@ end
 post '/profile' do
 
   @client = Twitter::REST::Client.new do |config|
-    # Use Heroku environment variables to authenticate to the Twitter API
+    # environment variables to authenticate to the Twitter API
     config.consumer_key = ENV['key']
     config.consumer_secret = ENV['secret']
   end
@@ -21,26 +21,26 @@ post '/profile' do
   puts 'Tripper::Search/'+params[:content]
 
   begin
-    #create the user and show the profile page
+    # create the user and show the profile page
     @user = @client.user(params[:content])
 
     # if the search is successful, print a message
     puts 'Tripper::User exists'
 
     # create instance variables for the chartkick charts
-    @tweetsource ||= Hash.new(0)
+    @tweetsource = Hash.new(0)
     @retweet_total = 0
     @likes_total = 0
     @num_tweets = 0
-    @tweetday ||= {"Sunday" => 0, "Monday" => 0, "Tuesday" => 0,
+    @tweetday = {"Sunday" => 0, "Monday" => 0, "Tuesday" => 0,
                 "Wednesday" => 0, "Thursday" => 0, "Friday" => 0,
                 "Saturday" => 0}
-    @followtz ||= Hash.new(0)
+    @followtz = Hash.new(0)
     sourcedays = Hash.new {|h,k| h[k] = []}
     @tweetline = Hash.new(0)
 
-    #note that, by detault the user_timeline method returns the 20 most recent 
-    #tweets posted by the specified user
+    # note that, by detault the user_timeline method returns the 20 most recent
+    # tweets posted by the specified user
     @timeline = @client.user_timeline(@user.screen_name, :count => 200)
     @timeline.each do |t|
       @num_tweets += 1
@@ -58,7 +58,7 @@ post '/profile' do
       @tweetline[date] += 1
     end
 
-    #format the sourcedays data
+    # format the sourcedays data
     @sourceplots = Hash.new {|h,k| h[k] = Hash.new(0)}
     sourcedays.each do |source, data|
       data.each do |date|
