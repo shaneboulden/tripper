@@ -18,14 +18,14 @@ post '/profile' do
     config.consumer_secret = ENV['secret']
   end
 
-  puts 'Tripper::Search/'+params[:content]
+  puts "Tripper::Search/#{params[:content]}"
 
   begin
     # create the user and show the profile page
     @user = @client.user(params[:content])
 
     # if the search is successful, print a message
-    puts 'Tripper::User exists'
+    puts "Tripper::User exists"
 
     # create instance variables for the chartkick charts
     @tweetsource = Hash.new(0)
@@ -69,15 +69,15 @@ post '/profile' do
     erb :profile
 
     rescue Twitter::Error::NotFound => e
-      puts 'Tripper::NotFound/'+e.message
+      puts "Tripper::NotFound/#{e.message}"
       flash[:error] = e.message
       redirect '/'
     rescue Twitter::Error::Forbidden => e
-      puts 'Tripper::Forbidden/'+e.message
+      puts "Tripper::Forbidden/#{e.message}"
       flash[:error] = e.message
       redirect '/'
     rescue Twitter::Error::Unauthorized => e
-      puts 'Tripper::Unauthorized/'+e.message
+      puts "Tripper::Unauthorized/#{e.message}"
       flash[:error] = 'Account protected (not authorized).'
       redirect '/'
   end
