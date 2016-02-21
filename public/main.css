@@ -167,6 +167,12 @@ header {
   margin: 0 0 5px;
   font-size: 16px;
 }
+
+#infobox {
+  width: 580px;
+  background: #ffe4c4;
+  margin: 0 auto 20px auto;
+}
                                                      
 #add input[type=text] {
   height: 30px;

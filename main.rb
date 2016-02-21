@@ -6,11 +6,18 @@ require 'sinatra/flash'
 enable :sessions
 
 get '/' do
-  @title = 'Search'
   erb :home
 end
 
+get '/*' do
+  get_and_show_profile(params[:splat])
+end
+
 post '/profile' do
+  get_and_show_profile(params[:content])
+end
+
+def get_and_show_profile(profile)
 
   @client = Twitter::REST::Client.new do |config|
     # environment variables to authenticate to the Twitter API
@@ -18,11 +25,11 @@ post '/profile' do
     config.consumer_secret = ENV['secret']
   end
 
-  puts "Tripper::Search/#{params[:content]}"
+  puts "Tripper::Search/#{profile}"
 
   begin
     # create the user and show the profile page
-    @user = @client.user(params[:content])
+    @user = @client.user(profile)
 
     # if the search is successful, print a message
     puts "Tripper::User exists"
