@@ -10,7 +10,7 @@ RSpec.describe Sinatra::Application do
 
     context "open Twitter account" do
       it "flashes an error" do
-        get '/rihanna'
+        get '/stephenathome'
           expect(last_response.status).to eq(302)
           follow_redirect!
           expect(last_response.status).to eq(200)
@@ -26,7 +26,7 @@ RSpec.describe Sinatra::Application do
 
     context "open Twitter account" do
       it "gets a Twitter profile successfully" do
-        get '/rihanna'
+        get '/stephenathome'
           expect(last_response.status).to eq(200)
           expect(last_response.body).to include('Screen name')
           expect(last_response.body).not_to include('flash error')
