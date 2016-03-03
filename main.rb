@@ -87,5 +87,13 @@ def get_and_show_profile(profile)
       puts "Tripper::Unauthorized/#{e.message}"
       flash[:error] = 'Account protected (not authorized).'
       redirect '/'
+    rescue Twitter::Error::TooManyRequests => e
+      puts "Tripper::TooManyRequests!"
+      flash[:error] = e.message
+      redirect '/'
+      # Note: the application may sleep for up to 15 minutes, but if
+      # we retry any sooner it will certainly fail.
+      sleep error.rate_limit.reset_in + 1
+      retry
   end
 end
