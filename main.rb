@@ -21,8 +21,8 @@ def get_and_show_profile(profile)
 
   @client = Twitter::REST::Client.new do |config|
     # environment variables to authenticate to the Twitter API
-    config.consumer_key = ENV['key']
-    config.consumer_secret = ENV['secret']
+    config.consumer_key = ENV['TWITTER_KEY']
+    config.consumer_secret = ENV['TWITTER_SECRET']
   end
 
   puts "Tripper::Search/#{profile}"
