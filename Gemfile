@@ -1,5 +1,4 @@
-source 'http://mirror.ops.rhcloud.com/mirror/ruby/'
-ruby "2.0.0"
+source 'http://rubygems.org'
 gem 'sinatra'
 gem 'twitter'
 gem 'chartkick'
