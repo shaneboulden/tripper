@@ -67,10 +67,11 @@ def get_and_show_profile(profile)
 
     # format the sourcedays data
     @sourceplots = Hash.new {|h,k| h[k] = Hash.new(0)}
+
     # initialize sourceplots with all sources from sourcedays
     dates = []
     sourcedays.keys.each do |source|
-      dates += sourcedays[key]
+      dates += sourcedays[source]
     end
 
     sourcedays.keys.each do |source|
@@ -79,6 +80,7 @@ def get_and_show_profile(profile)
       end
     end
 
+    # increment the dates for each source
     sourcedays.each do |source, data|
       data.each do |date|
         @sourceplots[source][date] += 1
