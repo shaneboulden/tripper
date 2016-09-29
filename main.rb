@@ -74,6 +74,7 @@ def get_and_show_profile(profile)
       dates += sourcedays[source]
     end
 
+    # initialize all dates to 0
     sourcedays.keys.each do |source|
       dates.each do |date|
         @sourceplots[source][date] = 0
