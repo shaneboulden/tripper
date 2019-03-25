@@ -90,6 +90,10 @@ def get_and_show_profile(profile)
 
     erb :profile
 
+    rescue Twitter::Error::BadRequest => e
+      puts "Tripper::Bad Request/#{e.message}"
+      flash[:error] = e.message
+      redirect '/'
     rescue Twitter::Error::NotFound => e
       puts "Tripper::NotFound/#{e.message}"
       flash[:error] = e.message
